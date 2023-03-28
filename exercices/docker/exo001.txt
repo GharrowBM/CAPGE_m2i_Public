@@ -1,0 +1,2 @@
+docker run -d -p 80:80 alexwhen/docker-2048
+docker run -d -p 2048:80 alexwhen/docker-2048

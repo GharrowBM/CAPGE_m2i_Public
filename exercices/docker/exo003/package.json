@@ -1,0 +1,19 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "My Node.js app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "node",
+    "example"
+  ],
+  "author": "John Doe",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
