@@ -1,0 +1,37 @@
+.counter-container {
+  margin: auto;
+  border-radius: 50%;
+  position: relative;
+  height: 300px;
+  width: 300px;
+  background-color: rgb(183, 183, 250);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter-container > div {
+  position: absolute;
+}
+
+.counter-container > div > button {
+  background-color: rgb(94, 22, 125);
+  height: 80px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 50%;
+  font-size: 3rem;
+  border: none;
+}
+
+.counter-container > div > button:is([disabled]) {
+  background-color: rgba(90, 28, 117, 0.8);
+}
+
+.counter-container > div > button:not([disabled]):hover {
+  background-color: rgb(137, 57, 171);
+  cursor: pointer;
+}
