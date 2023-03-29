@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Uploader</title>
+</head>
+<body>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+  </form>
+  <h2>Uploaded Images</h2>
+  <ul id="image-list"></ul>
+
+  <script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
+  <script id="image-template" type="text/x-handlebars-template">
+    {{#each images}}
+      <li><a href="/uploads/{{this}}">{{this}}</a></li>
+    {{/each}}
+  </script>
+  <script>
+    fetch('/uploads')
+      .then(res => res.json())
+      .then(data => {
+        const template = Handlebars.compile(document.querySelector('#image-template').innerHTML);
+        const html = template({ images: data });
+        const ul = document.querySelector('#image-list');
+        ul.innerHTML = html;
+      });
+  </script>
+</body>
+</html>

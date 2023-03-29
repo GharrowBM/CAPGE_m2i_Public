@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mysql-server:
+    container_name: database
+    image: mysql
+    env_file:
+      - ./env/database.env
+    volumes:
+      - app-01-data:/var/lib/mysql
+    restart: on-failure
+  front-app:
+    container_name: app
+    image: front-app
+    build: ./app
+    depends_on:
+      - mysql-server
+    ports:
+      - "8080:3000"
+volumes:
+  app-01-data:

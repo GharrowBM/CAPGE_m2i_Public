@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mysql-server:
+    container_name: mysql
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+    volumes:
+      - sql-data:/var/lib/mysql
+  mysql-client:
+    container_name: mysql-client
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+volumes:
+  sql-data:
