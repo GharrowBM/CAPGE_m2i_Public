@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS repertory;
+USE repertory;
+CREATE TABLE IF NOT EXISTS clients (
+    id INT NOT NULL AUTO_INCREMENT,
+    firstname VARCHAR(150) NOT NULL,
+    lastname VARCHAR(150) NOT NULL,
+    email VARCHAR(250) UNIQUE,
+    phoneNumber VARCHAR(30) UNIQUE,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
