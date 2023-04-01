@@ -1,0 +1,43 @@
+Aller dans R1
+- git init
+Créer un fichier
+- git add .
+- git commit -m "C1"
+Aller dans R2
+- git clone <Adresse de R1>
+- git branch -a
+Aller sur R1
+Modifier le fichier
+- git commit -am "C2"
+Aller sur le clone de R1
+- git pull
+- git log
+- git checkout -b B1
+Modifier le fichier
+- git commit -am "C3"
+- git push -u origin B1
+Aller sur R1
+- git branch -a
+- git branch B2
+Aller sur le clone de R1
+- git fetch origin
+- git branch -a
+- git checkout --track origin/B2
+- git tag -a T1 -m ""
+- git push origin T1
+Aller sur R1
+- git tag -l
+- git checkout B1
+Modifier la première ligne du fichier
+- git commit -am "C4"
+- git checkout main
+Aller sur le clone de R1
+Modifier la première ligne du fichier
+- git commit -am "C5"
+- git push
+Résoudre le conflit
+- git commit -am "Nom du commit de merge"
+- git push 
+Aller sur R1
+- git checkout B1
+- git log

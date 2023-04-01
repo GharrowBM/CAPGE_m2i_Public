@@ -1,0 +1,24 @@
+- git init 
+Créer un fichier 
+- git add <nom du fichier>
+- git commit -m "Nom du commit" 
+Créer un second fichier
+- git add .
+- git commit -m "Nom du commit"
+- git log 
+Modifier le second fichier 
+- git commit -am "Nom du commit"
+- git reset --hard HEAD^
+- git log
+- git checkout <ID 1er commit>
+- git checkout -b "Nom de la branche"
+Créer un fichier
+- git add . 
+- git commit -m "Nom du commit"
+- git log
+- git branch
+- git tag -a <Nom du tag> -m ""
+- git checkout main
+- git tag -l
+- git branch -D <Nom de la branche>
+- git branch 

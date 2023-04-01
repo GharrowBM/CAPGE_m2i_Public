@@ -1,0 +1,7 @@
+- git init 
+Créer un fichier 
+- git add <nom du fichier>
+- git commit -m "Nom du commit" 
+Modifier le fichier et le sauvegarder
+- git commit -am "Nom du commit"
+- git log 

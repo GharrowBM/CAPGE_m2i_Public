@@ -1,0 +1,17 @@
+- git init 
+Créer un fichier 
+- git add <nom du fichier>
+- git commit -m "C1" 
+Modifier le fichier
+- git commit -am "C2"
+- git checkout <ID de C1>
+- git checkout -b B1
+Modifier le fichier 
+- git commit -am "C3"
+- git rebase main
+
+(Si Conflits)
+
+Gérer le conflit
+- git add .
+- git rebase --continue

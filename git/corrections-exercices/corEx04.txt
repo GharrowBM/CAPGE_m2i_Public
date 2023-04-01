@@ -1,0 +1,9 @@
+- git init 
+Créer un fichier 
+- git add <nom du fichier>
+- git commit -m "C1" 
+- git checkout -b B1 
+Modifier le fichier
+- git commit -am "C2"
+- git checkout main
+- git merge B1

@@ -1,0 +1,13 @@
+- git init 
+Créer un fichier 
+- git add <nom du fichier>
+- git commit -m "C1" 
+Modifier la première ligne du fichier
+- git commit -am "C2"
+- git checkout -b B1 <ID du commit C1>
+Modifier la première ligne du fichier
+- git commit -am "C3"
+- git checkout main
+- git merge B1
+Résoudre les conflits
+- git commit -am "Nom du commit"
