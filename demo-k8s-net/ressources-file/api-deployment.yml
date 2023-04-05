@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-micro-api-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: demo-micro-api
+  template:
+    metadata:
+      labels:
+        app: demo-micro-api
+    spec:
+      containers:
+      - name: demo-micro-api
+        image: gharrowbm/demo-micro-api:latest
+        env:
+          - name: MYSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: demo-micro-env
+                key: MYSQL_HOST
+          - name: MYSQL_USER
+            valueFrom:
+              configMapKeyRef:
+                name: demo-micro-env
+                key: MYSQL_USER
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: demo-micro-env
+                key: MYSQL_ROOT_PASSWORD
+          - name: MYSQL_DB
+            valueFrom:
+              configMapKeyRef:
+                name: demo-micro-env
+                key: MYSQL_DATABASE
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000

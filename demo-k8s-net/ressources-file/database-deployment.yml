@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-micro-database-deployment
+spec:
+  selector:
+    matchLabels:
+      app: demo-micro-database
+  template:
+    metadata:
+      labels:
+        app: demo-micro-database
+    spec:
+      volumes:
+        - name: demo-micro-database-volume
+          hostPath:
+            path: /demo-micro-database-data
+            type: DirectoryOrCreate
+      containers:
+      - name: demo-micro-database
+        image: gharrowbm/demo-micro-database:latest
+        volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: demo-micro-database-volume
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: demo-micro-env
+                key: MYSQL_ROOT_PASSWORD
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: demo-micro-env
+                key: MYSQL_DATABASE
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3306
