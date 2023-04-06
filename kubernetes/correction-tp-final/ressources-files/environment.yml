@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: project-env
+data:
+  TASKS_FOLDER: tasks
+  AUTH_ADDRESS: auth-service.default

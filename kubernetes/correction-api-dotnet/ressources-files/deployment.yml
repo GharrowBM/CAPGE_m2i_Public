@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-app-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: dotnet-app
+  template:
+    metadata:
+      labels:
+        app: dotnet-app
+    spec:
+      volumes: # Pour créer des volumes, il faut définir les drivers utilisés par K8s pour lier des emplacements de notre conteneur vers des emplacements de notre node
+        - name: volume-type-emptydir # Ces emplacements doivent avoir un nom vis-à-vis de K8s 
+          emptyDir: # Puis on choisi quel type de driver on veut utiliser, ici 'emptyDir'
+            sizeLimit: "500M" # On peut fixer la taille limite d'un dossier de ce type
+          
+
+        - name: volume-type-hostpath # Pour créer un autre volume partageable par nos X pods, il faut utiliser un autre driver
+          hostPath: # qui se nomme 'hostPath'
+            path: /data-app-dotnet # On va ainsi lier un chemin de fichier sur le node 
+            type: DirectoryOrCreate # Il est possible de créer le dossier en cas d'absence via le type 'DirectoryOrCreate'
+
+      containers:
+      - name: dotnet-app
+        volumeMounts:
+          - mountPath: /uploads
+            name: volume-type-emptydir
+
+          - mountPath: /data-partagees
+            name: volume-type-hostpath 
+
+        image: gharrowbm/test-push:latest
+        env: # Pour ajouter des variables d'environnement à notre conteneur, on crée un attribut 'env' qui a comme valeur une liste d'objets YML
+          - name: MA_VARIABLE # Il faut le nom de la variable
+            value: "la-valeur-claire" # et si l'on le veut, la valeur en clair
+
+          # Une autre solution serait de créer un type de ressources dont l'objectif est le stockage de ce genre d'ensemble de clé-valeur => ConfigMap
+          - name: VARIABLE_PIOCHEE # On défini encore le nom de la variable dans le conteneur
+            valueFrom: # mais sa valeur est récupérée depuis
+              configMapKeyRef: # une ConfigMap
+                name: dotnet-app-configmap # portant un nom particulier dans ses méta-données
+                key: VARIABLE_A # et on veut la clé nommée 'VARIABLE_A'
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

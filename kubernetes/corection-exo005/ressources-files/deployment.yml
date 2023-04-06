@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exo-05-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: exo-05
+  template:
+    metadata:
+      labels:
+        app: exo-05
+    spec:
+      volumes:
+        - name: exo-05-story-volume
+          hostPath:
+            path: /stories
+            type: DirectoryOrCreate
+      containers:
+      - name: exo-05
+        volumeMounts:
+          - name: exo-05-story-volume
+            mountPath: /app/story # -v /stories:/app/story
+        env:
+          - name: STORY_FOLDER
+            valueFrom:
+              configMapKeyRef:
+                name: exo-05-env
+                key: BLABLA
+        image: gharrowbm/correction-exo05:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000

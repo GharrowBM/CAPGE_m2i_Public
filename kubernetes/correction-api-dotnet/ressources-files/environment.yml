@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dotnet-app-configmap
+data:
+  VARIABLE_A: "valeur de variable a"
+  VARIABLE_B: "254"
